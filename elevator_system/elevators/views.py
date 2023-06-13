@@ -6,6 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Elevator
 from .serializers import ElevatorSerializer
+from .utils import assign_elevator
 
 class ElevatorViewSet(viewsets.ModelViewSet):
     queryset = Elevator.objects.all()
@@ -48,5 +49,19 @@ class ElevatorViewSet(viewsets.ModelViewSet):
         if floor is not None:
             elevator.add_request(floor)
             return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class RequestViewSet(viewsets.ViewSet):
+    @action(detail=False, methods=['post'])
+    def make_request(self, request):
+        floor = request.data.get('floor')
+        if floor is not None:
+            elevator = assign_elevator(floor)
+            if elevator is not None:
+                return Response({'elevator_id': elevator.id}, status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_204_NO_CONTENT)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
