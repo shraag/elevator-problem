@@ -1,6 +1,6 @@
 # Elevator System API
 
-This is a simple Django-based REST API for managing an elevator system. 
+This is a Django-based REST API for managing an elevator system. 
 
 ## Architecture
 The application is built using the Django framework and Django Rest Framework. The data is stored in a SQLite database that comes with Django by default. The logic of elevator control is kept in the `Elevator` model in the `elevators` app. 
