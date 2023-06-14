@@ -56,7 +56,7 @@ class ElevatorViewSet(viewsets.ModelViewSet):
 class RequestViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['post'])
     def make_request(self, request):
-        floor = request.data.get('floor')
+        floor = int(request.data.get('floor'))
         if floor is not None:
             elevator = assign_elevator(floor)
             if elevator is not None:

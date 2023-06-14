@@ -28,9 +28,10 @@ class Elevator(models.Model):
 
     def move_down(self):
         if self.state != 'M':
-            self.current_floor -= 1
-            self.state = 'D'
-            self.save()
+            if self.current_floor > 0:
+                self.current_floor -= 1
+                self.state = 'D'
+                self.save()
 
     def stop(self):
         self.state = 'S'
