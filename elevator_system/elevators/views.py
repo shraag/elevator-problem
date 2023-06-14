@@ -51,6 +51,33 @@ class ElevatorViewSet(viewsets.ModelViewSet):
             return Response(status=status.HTTP_200_OK)
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+    @action(detail=True, methods=['get'])
+    def state(self, request, pk=None):
+        elevator = self.get_object()
+        return Response({'state': elevator.state})
+    
+    @action(detail=True, methods=['get'])
+    def door(self, request, pk=None):
+        elevator = self.get_object()
+        return Response({'door': elevator.door})
+    
+    @action(detail=True, methods=['get'])
+    def current_floor(self, request, pk=None):
+        elevator = self.get_object()
+        return Response({'current_floor': elevator.current_floor})
+    
+    @action(detail=True, methods=['get'])
+    def destination_floor(self, request, pk=None):
+        elevator = self.get_object()
+        return Response({'destination_floor': elevator.destination_floor})
+    
+    @action(detail=True, methods=['get'])
+    def requests(self, request, pk=None):
+        elevator = self.get_object()
+        return Response({'requests': elevator.requests})
+    
+
 
 
 class RequestViewSet(viewsets.ViewSet):
