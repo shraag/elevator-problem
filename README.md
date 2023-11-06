@@ -87,6 +87,3 @@ To run the tests in tests.py, navigate to the project directory and type the fol
 
 * **Shranay Agarwal** - *Initial work* - [shraag](https://github.com/shraag)
 
-## Acknowledgments
-
-* This project is part of a coding assignment for JumpingMinds.
